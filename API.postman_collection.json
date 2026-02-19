@@ -1,0 +1,231 @@
+{
+  "info": {
+    "_postman_id": "00000000-0000-0000-0000-000000000001",
+    "name": "Social Media Post API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Root",
+      "item": [
+        {
+          "name": "Health / Root",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": [""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "Create Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-User-Id",
+                "value": "user-1",
+                "description": "Mocked user ID (user-1, user-2, user-3)"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Hello world!\",\n  \"mediaRefs\": [\"https://example.com/image.jpg\"]\n}"
+            },
+            "url": {
+              "raw": "localhost:3000/posts",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["posts"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Feed (first page)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/posts?limit=10",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["posts"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Feed (next page with cursor)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/posts?cursor={{cursor}}&limit=10",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["posts"],
+              "query": [
+                {
+                  "key": "cursor",
+                  "value": "{{cursor}}",
+                  "description": "Set this to the nextCursor from previous response"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Post by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/posts/{{postId}}",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["posts", "{{postId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Engagement",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/posts/{{postId}}/engagement",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["posts", "{{postId}}", "engagement"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Like Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-User-Id",
+                "value": "user-1",
+                "description": "Mocked user ID"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/posts/{{postId}}/like",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["posts", "{{postId}}", "like"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unlike Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-User-Id",
+                "value": "user-1",
+                "description": "Mocked user ID"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/posts/{{postId}}/unlike",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["posts", "{{postId}}", "unlike"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Comment on Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-User-Id",
+                "value": "user-1",
+                "description": "Mocked user ID"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Great post!\"\n}"
+            },
+            "url": {
+              "raw": "localhost:3000/posts/{{postId}}/comment",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["posts", "{{postId}}", "comment"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Share Post",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/posts/{{postId}}/share",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["posts", "{{postId}}", "share"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "variable": [
+    {
+      "key": "postId",
+      "value": "",
+      "description": "Fill with a post ID from Create or Feed responses"
+    },
+    {
+      "key": "cursor",
+      "value": "",
+      "description": "Fill with nextCursor value from Feed response"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+require('dotenv').config()
+const APP_DIR = process.env.NODE_ENV === 'production' ? 'dist' : 'src'
+
+const { api } = require(`../${APP_DIR}`)
+const config = require(`../${APP_DIR}/config`)
+const port = config.app.port || 3000
+api.listen(port, () => console.log(`API is listening on port ${port}`))

@@ -1,0 +1,39 @@
+{
+  "name": "social-media-post-api",
+  "version": "1.0.0",
+  "description": "Social Media Post Module - Node.js/TypeScript backend with clean architecture",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "start": "NODE_ENV=production node ./bin/app",
+    "dev": "nodemon ./bin/app",
+    "lint": "npx eslint src",
+    "lint:fix": "npx eslint src --fix"
+  },
+  "keywords": ["nodejs", "typescript", "clean-architecture", "social-media", "posts"],
+  "author": "Jitendra Singh",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/method-override": "^3.0.0",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.13.9",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^16.0.0",
+    "prettier": "3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.1",
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0"
+  }
+}
